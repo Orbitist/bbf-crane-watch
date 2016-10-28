@@ -1,0 +1,14 @@
+.edit-button {
+  position: relative;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 12px;
+}
+.edit-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.map-info-title a, .popuptitle a {
+  text-decoration: none;
+}
