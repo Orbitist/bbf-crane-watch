@@ -1,4 +1,4 @@
-// Map Variables
+// Run a check to see if there was a hash on load
 var hasHash = false;
 if(window.location.hash) {
   hasHash = true;
@@ -6,6 +6,51 @@ if(window.location.hash) {
 else {
   hasHash = false;
 }
+
+// Set Url for points info API
+var pointsInfoApi = 'https://app.orbitist.com/api/v1/points/' + mapid + '.json';
+
+// Do things if in edit mode
+if (mode == 'edit'){
+  var pointsInfoApi = 'https://app.orbitist.com/api/v1/points/edit/' + mapid + '.json';
+}
+
+
+
+// Get points geojson data //
+var orbitistPointsGeojson = (function () {
+    var orbitistPointsGeojson = null;
+    $.ajax({
+        'async': false,
+        'global': false,
+        'url': pointsInfoApi,
+        'dataType': "json",
+        'success': function (data) {
+            orbitistPointsGeojson = data;
+        }
+    });
+    return orbitistPointsGeojson;
+})();
+
+// Find and replace all the nasty characters
+var jsonCleaner = JSON.stringify(orbitistPointsGeojson).replace(/&amp;/g, '&').replace(/&#039;/g, '\'');
+var orbitistPointsGeojsonCleaned = JSON.parse(jsonCleaner);
+
+
+
+// Check to see if there are more than 1 item in the json. If not, set these bounds
+if ( orbitistPointsGeojsonCleaned.features.length < 2 ) {
+  var bounds = [[-180,90], [192,61]];
+}
+else {
+  // Get bounds from orbitistPointsGeojson //
+  var bounds = new mapboxgl.LngLatBounds();
+  orbitistPointsGeojsonCleaned.features.forEach(function(feature) {
+      bounds.extend(feature.geometry.coordinates);
+  });
+}
+
+// Check to see if in embed mode. If so set scrollZoomSetting to false
 var scrollZoomSetting = true;
 if (mode == 'embed') {
   scrollZoomSetting = false;
@@ -13,12 +58,7 @@ if (mode == 'embed') {
 else {
   scrollZoomSetting = true;
 }
-var textFieldCode = "{point_title}";
-// if (numberedPoints == "true") {
-//   textFieldCode = "{point_position_number} - {point_title}";
-// }
 
-// The Map
 var map = new mapboxgl.Map({
     container: 'map',
     pitch: 0,
@@ -26,42 +66,13 @@ var map = new mapboxgl.Map({
     scrollZoom: scrollZoomSetting
 });
 
-// The Layers
-var orbitistLayers = {"layers":[
-                      {"title":"Other","id":3890},
-                      {"title":"Warehouse/Distribution","id":3889},
-                      {"title":"Sports","id":3888},
-                      {"title":"Retail","id":3887},
-                      {"title":"Restaurants","id":3886},
-                      {"title":"Residential","id":3885},
-                      {"title":"Office","id":3884},
-                      {"title":"Mixed-Use","id":3883},
-                      {"title":"Hotels","id":3882},
-                      {"title":"Hospitality","id":3881},
-                      {"title":"Commercial","id":3880}
-                    ]}
+var textFieldCode = "{point_title}";
+if (numberedPoints == "true") {
+  textFieldCode = "{point_position_number} - {point_title}";
+}
 
-map.on('load', function() {
-  // Loop through the layers
-  for (var i = 0; i < orbitistLayers.layers.length; i++) {
-
-    var orbitistPointsGeojson = (function () {
-        var orbitistPointsGeojson = null;
-        $.ajax({
-            'async': false,
-            'global': false,
-            'url': 'https://app.orbitist.com/api/v1/points/' + orbitistLayers.layers[i].id + '.json',
-            'dataType': "json",
-            'success': function (data) {
-                orbitistPointsGeojson = data;
-            }
-        });
-        return orbitistPointsGeojson;
-    })();
-    var jsonCleaner = JSON.stringify(orbitistPointsGeojson).replace(/&amp;/g, '&').replace(/&#039;/g, '\'');
-    var orbitistPointsGeojsonCleaned = JSON.parse(jsonCleaner);
-
-    map.addSource(orbitistLayers.layers[i].title + orbitistLayers.layers[i].id, {
+  map.on('load', function() {
+    map.addSource("orbitistPoints", {
       type: "geojson",
       data: orbitistPointsGeojsonCleaned
     });
@@ -96,6 +107,14 @@ map.on('load', function() {
     });
 
 
+    // Check to see if there was a has on load
+    if(hasHash == true) {
+    } else {
+      map.fitBounds(bounds, { padding: '50' });
+    }
+
+
+
     // Add custom markers to map
     for (var i = 0; i < orbitistPointsGeojsonCleaned.features.length; i++) {
         var feature = orbitistPointsGeojsonCleaned.features[i];
@@ -112,13 +131,7 @@ map.on('load', function() {
             .addTo(map);
     }
 
-  }
-});
-
-
-
-
-
+  });
 
 map.on('click', function (e) {
   var features = map.queryRenderedFeatures(e.point, { layers: ['points'] });
@@ -210,5 +223,5 @@ jQuery('body').on({ 'touchstart': function () {
 }});
 
 
-// renderMapList();
+renderMapList();
 removeSpinner();
