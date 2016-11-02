@@ -150,4 +150,5 @@ $(document).ready(
 // );
 $(document).ready(function(){
   $('body a').attr('target', '_blank');
+  $('.layer-menu a').attr('target', '_self');
 });
