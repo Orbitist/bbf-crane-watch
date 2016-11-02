@@ -3,20 +3,20 @@
 <head>
   <meta charset='utf-8' />
 
-  <title>Buffalo Business First | Crane Watch</title>
-  <meta name="description" content="Keeping an eye on major real estate projects in Western New York">
-  <meta name="author" content="Buffalo Business First">
-  <meta property="og:title" content="Crane Watch" />
-  <meta property="og:description" content="Keeping an eye on major real estate projects in Western New York" />
-  <meta property="og:image" content="http://media.bizj.us/view/img/7297012/intro-southbuffalo-viewofdowntown-nk-2352*750xx3600-2029-0-247.jpg" />
+  <title>Property Map | Chautauqua Land Bank</title>
+  <meta name="description" content="Properties and rehabs for sale from the Chautauqua County Land Bank Corporation.">
+  <meta name="author" content="Chautauqua County Land Bank Corporation">
+  <meta property="og:title" content="Chautauqua County Land Bank Property Map" />
+  <meta property="og:description" content="Properties and rehabs for sale from the Chautauqua County Land Bank Corporation." />
+  <meta property="og:image" content="img/map.jpg" />
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@BfloBizFirst">
-  <meta name="twitter:creator" content="@BfloBizFirst">
-  <meta name="twitter:title" content="Crane Watch">
-  <meta name="twitter:description" content="Keeping an eye on major real estate projects in Western New York">
-  <meta name="twitter:image:src" content="http://media.bizj.us/view/img/7297012/intro-southbuffalo-viewofdowntown-nk-2352*750xx3600-2029-0-247.jpg">
-  <link rel="shortcut icon" href="https://pbs.twimg.com/profile_images/447005729484840960/LgZho1Ho_400x400.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="https://pbs.twimg.com/profile_images/447005729484840960/LgZho1Ho_400x400.png">
+  <meta name="twitter:site" content="@orbitistlls">
+  <meta name="twitter:creator" content="@orbitistllc">
+  <meta name="twitter:title" content="Chautauqua County Land Bank Property Map">
+  <meta name="twitter:description" content="Properties and rehabs for sale from the Chautauqua County Land Bank Corporation.">
+  <meta name="twitter:image:src" content="img/map.jpg">
+  <link rel="shortcut icon" href="http://www.chautauqualandbank.org/uploads/favicon.ico">
+  <link rel="apple-touch-icon" sizes="152x152" href="http://www.chautauqualandbank.org/uploads/favicon.ico">
 
 
   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
@@ -53,6 +53,7 @@
   <link href='css/story-elements.css' rel='stylesheet' />
   <link href='css/orbitist-big.css' rel='stylesheet' />
   <link href='css/edit.css' rel='stylesheet' />
+  <link href='css/filter-group.css' rel='stylesheet' />
 </head>
 <body>
 
@@ -68,12 +69,10 @@
     <!-- Map reset button -->
     <div class="map-reset control"><i class="fa fa-repeat"></i></div>
     <!-- bbf watermark -->
-    <a href="http://bizjournals.com/buffalo" target="_blank"><img src="https://pbs.twimg.com/profile_images/447005729484840960/LgZho1Ho_400x400.png" id="orbitist-watermark" /></a>
+    <a href="http://www.chautauqualandbank.org/" target="_blank"><img src="http://www.chautauqualandbank.org/layout/cclbc_logo.png" id="orbitist-watermark" /></a>
     <!-- bbf key -->
     <div id="orbitist-key">
-      <p><img src="http://labs.orbitist.com/bbf-core-2016/img/proposed.png" /> Proposed</p>
-      <p><img src="http://labs.orbitist.com/bbf-core-2016/img/under.png" /> Underway</p>
-      <p><img src="http://labs.orbitist.com/bbf-core-2016/img/completed.png" /> Completed</p>
+      <nav id='filter-group' class='filter-group'></nav>
     </div>
   </div>
 
@@ -81,7 +80,9 @@
   <!-- Map Info Pane -->
   <div class="map-info"></div>
   <!-- Map List Pane -->
-  <div class="map-list"></div>
+  <div class="map-list">
+    <div id="map-list-items"></div>
+  </div>
   <!-- Map Help Pane -->
   <div class="map-help"></div>
 

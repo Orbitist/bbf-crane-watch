@@ -1,6 +1,6 @@
 // Small Screens
 jQuery(document).ready(function () {
-  if (jQuery(window).width() < 600){
+  if (jQuery(window).width() < 800){
     jQuery('.map-info-toggle, .map-help').click(function () {
       jQuery('.map').css({"left": "-100%"}),
       jQuery('.map-info').css({"left": "0"}),
@@ -53,7 +53,7 @@ jQuery(document).ready(function () {
 
 // Big Screens
 jQuery(document).ready(function () {
-  if (jQuery(window).width() >= 600){
+  if (jQuery(window).width() >= 800){
     jQuery('.map-info-toggle, .map-help').click(function () {
       jQuery('.map-info').css({"left": "calc(100% - 500px)"}),
       jQuery('.map-toggle-info').css({"left": "calc(100% - 490px)"}),

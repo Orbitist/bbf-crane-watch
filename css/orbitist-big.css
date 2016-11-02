@@ -1,8 +1,8 @@
-@media (min-width: 600px) {
+@media (min-width: 800px) {
 
 .map {
-  left: 150px;
-  width: calc(100% - 150px);
+  left: 300px;
+  width: calc(100% - 300px);
 }
 
 .map-info {
@@ -11,7 +11,7 @@
 
 .map-list {
   left: 0px;
-  width: 150px;
+  width: 300px;
   background-color: #eee;
 }
 .map-list-item p {
@@ -20,13 +20,14 @@
 
 @keyframes popup_animation {
     from {top: -90%;}
-    to {top: 10px;}
+    to {top: 20px;}
 }
 
 .mapboxgl-popup {
-  top: 10px;
-  left: 160px;
-  min-width: 400px;
+  top: 20px;
+  left: 320px;
+  min-width: 500px;
+  max-width: 500px;
 }
 
 .map-list-item:hover {
@@ -35,7 +36,7 @@
 
 .map-help {
   font-size: 20px;
-  left: 160px;
+  left: 310px;
 }
 
 .map-geolocate {
@@ -53,28 +54,5 @@
     position: absolute;
     top: 2px;
     right: 2px;
-  }
-}
-
-@media (min-width: 800px) {
-  .map {
-    left: 300px;
-    width: calc(100% - 300px);
-  }
-  .map-list {
-    width: 300px;
-  }
-  .mapboxgl-popup {
-    left: 310px;
-  }
-  .map-help {
-    left: 310px;
-  }
-}
-
-/* Medium sizes */
-@media (max-width: 1000px) and (min-width: 600px) {
-  .mapboxgl-popup {
-    max-width: 300px;
   }
 }
