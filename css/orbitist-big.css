@@ -20,7 +20,7 @@
 
 .layer-menu {
   left: 0px;
-  width: 294px;
+  width: 144px;
 }
 
 @keyframes popup_animation {
@@ -68,6 +68,9 @@
   }
   .map-list {
     width: 300px;
+  }
+  .layer-menu {
+    width: 294px;
   }
   .mapboxgl-popup {
     left: 310px;
