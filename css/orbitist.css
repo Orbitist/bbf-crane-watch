@@ -112,6 +112,15 @@ html {
   overflow-x: hidden;
   background-color: rgba(0, 0, 0, 0.8);
 }
+.layer-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+}
+.map-list-spacer {
+  height: 40px;
+}
 .map-list hr {
   margin: 0;
   color: rgba(255, 255, 255, 0.2);;
