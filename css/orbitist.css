@@ -114,9 +114,17 @@ html {
 }
 .layer-menu {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0px;
+  left: -100%;
   z-index: 5;
+  width: 100%;
+  -webkit-transition: all .4s ease-out;
+  -o-transition: all .4s ease-out;
+  transition: all .4s ease-out;
+}
+.btn-full-width {
+  width: 100%;
+  border-radius: 0px;
 }
 .map-list-spacer {
   height: 40px;
