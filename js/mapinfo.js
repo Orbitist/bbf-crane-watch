@@ -4,11 +4,11 @@ var fadeLabel = startLabel - 1;
 var endLabel = startLabel + 2;
 
 // Set Url for map info API
-var mapInfoApi = 'https://app.orbitist.com/api/v1/map.json?mapid=' + mapid;
+var mapInfoApi = 'https://orbitist.space/maps/api/v1/map.json?mapid=' + mapid;
 
 // Do things if in edit mode
 if (mode == 'edit'){
-  var mapInfoApi = 'https://app.orbitist.com/api/v1/map_edit.json?mapid=' + mapid;
+  var mapInfoApi = 'https://orbitist.space/maps/api/v1/map_edit.json?mapid=' + mapid;
 }
 
 // Is this a numbered map?
@@ -36,11 +36,11 @@ $(document).ready(
                  content  += '">';
                  content  += '<div class="map-info-body"><h3 class="map-info-title">';
                  content +=  data[i].map_title;
-                 content  += '</h3><p>By <a target="_parent" href="https://app.orbitist.com/u/' + data[i].map_author_name + '" >';
+                 content  += '</h3><p>By <a target="_parent" href="https://orbitist.space/maps/u/' + data[i].map_author_name + '" >';
                  content +=  data[i].map_author_full_name;
                  content +=  '</a></p>';
                  content +=  data[i].map_body;
-                 content += '<a target="_parent" href="https://app.orbitist.com/u/' + data[i].map_author_name + '" ><div class="author-profile-link"><img src="' + data[i].map_author_profile_image + '" class="author-profile-image" />';
+                 content += '<a target="_parent" href="https://orbitist.space/maps/u/' + data[i].map_author_name + '" ><div class="author-profile-link"><img src="' + data[i].map_author_profile_image + '" class="author-profile-image" />';
                  content += '<p><small>More maps by:</small><br />' + data[i].map_author_full_name + '</p></div></a>';
                  content +=  '<p style="text-align:center;"><small><a href="http://www.orbitist.com/learn/how-to-use/">Help</a> | Map powered by <a href="http://orbitist.com">Orbitist</a></small></p></div></a>';
             $('div.map-info').append(content); // Add content to map-info pane
