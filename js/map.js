@@ -8,11 +8,11 @@ else {
 }
 
 // Set Url for points info API
-var pointsInfoApi = 'https://app.orbitist.com/api/v1/points/' + mapid + '.json';
+var pointsInfoApi = 'https://orbitist.space/maps/api/v1/points/' + mapid + '.json';
 
 // Do things if in edit mode
 if (mode == 'edit'){
-  var pointsInfoApi = 'https://app.orbitist.com/api/v1/points/edit/' + mapid + '.json';
+  var pointsInfoApi = 'https://orbitist.space/maps/api/v1/points/edit/' + mapid + '.json';
 }
 
 
@@ -141,7 +141,7 @@ map.on('click', function (e) {
   var feature = features[0];
   var popup = new mapboxgl.Popup({anchor: 'none'})
     .setLngLat(feature.geometry.coordinates)
-    .setHTML('<a href="' + feature.properties.point_image + '" data-lightbox="' + feature.properties.point_id + '" data-title="' + feature.properties.point_image_caption + '" class="popup-image-anchor"></a>' + feature.properties.point_lightbox_images + '<div class="popup-body"><div class="popuptitle"><h3>' + feature.properties.point_title + '</h3></div>' + feature.properties.point_body + feature.properties.point_links + '<div class="action-items"><div class="action-item"><a href="https://www.google.com/maps/dir/Current+Location/' + feature.geometry.coordinates[1] + ',' + feature.geometry.coordinates[0] + '" target="_blank"><span class="fa fa-car center-block"></span></a></div><div class="action-item"><a href="https://app.orbitist.com/print/' + feature.properties.point_id + '" target="_blank"><span class="fa fa-print center-block"></span></a></div></div></div>')
+    .setHTML('<a href="' + feature.properties.point_image + '" data-lightbox="' + feature.properties.point_id + '" data-title="' + feature.properties.point_image_caption + '" class="popup-image-anchor"></a>' + feature.properties.point_lightbox_images + '<div class="popup-body"><div class="popuptitle"><h3>' + feature.properties.point_title + '</h3></div>' + feature.properties.point_body + feature.properties.point_links + '<div class="action-items"><div class="action-item"><a href="https://www.google.com/maps/dir/Current+Location/' + feature.geometry.coordinates[1] + ',' + feature.geometry.coordinates[0] + '" target="_blank"><span class="fa fa-car center-block"></span></a></div><div class="action-item"><a href="https://orbitist.space/maps/print/' + feature.properties.point_id + '" target="_blank"><span class="fa fa-print center-block"></span></a></div></div></div>')
     .addTo(map);
   if (feature.properties.point_image.length > 5 && feature.properties.point_lightbox_images.length > 5) {
     $('.popup-image-anchor').append('<img src="' + feature.properties.point_popup_image + '" class="popup-top-image"><div class="popupimage-expand"><span class="fa fa-clone"></span> More Images</div>');
@@ -191,7 +191,7 @@ function centerMap (position){
   }
   // create an img element for the marker
   geolocationMarker = document.createElement('img');
-  geolocationMarker.src = "https://app.orbitist.com/launch/cdn/orbitist-icons/orbitist_smile.gif";
+  geolocationMarker.src = "https://orbitist.space/maps/launch/cdn/orbitist-icons/orbitist_smile.gif";
   geolocationMarker.style.width = "40px";
   geolocationMarker.style.height = "40px";
   new mapboxgl.Marker(geolocationMarker).setLngLat([position.coords.longitude, position.coords.latitude]).addTo(map);
